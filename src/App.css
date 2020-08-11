@@ -26,3 +26,15 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+.root-container {
+  height: 100vh;
+}
+.container-fluid {
+  height: 90%;
+}
+.search-bar-row {
+  height: 40%;
+}
+.panels-row {
+  height: 60%;
+}
