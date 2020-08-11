@@ -38,3 +38,6 @@
 .panels-row {
   height: 60%;
 }
+.panels-col {
+  height: 100%;
+}
