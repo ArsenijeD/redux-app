@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import './App.css';
-import Button from 'react-bootstrap/Button';
+import Header from './components/Header/Header';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <Button>My Bootstrap Button</Button>
+        <Header />
       </div>
     );
   }
