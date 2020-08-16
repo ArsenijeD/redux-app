@@ -1,15 +1,17 @@
 import React, {Component} from 'react';
-import './SearchBar.css'
 import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button'
+import Button from 'react-bootstrap/Button';
 import ProgressBar from 'react-bootstrap/ProgressBar';
+import { connect } from 'react-redux';
+
+import './SearchBar.css';
+import * as actionCreators from '../../store/actions/index';
 
 class SearchBar extends Component {
 
     state = {
         gitUsername: '',
-        gitRepository: '',
-        showProgress: false
+        gitRepository: ''
     }
 
     gitUsernameHandler = (event) => {
@@ -20,14 +22,10 @@ class SearchBar extends Component {
         this.setState({gitRepository: event.target.value})
     }
 
-    checkCommitsHandler = () => {
-        this.setState({showProgress: true});
-    }
-
     render() {
         let progress = null;
 
-        if (this.state.showProgress) {
+        if (this.props.showProgress) {
             progress = (
                 <div className="progress row">
                     <ProgressBar className="progress-bar progress-bar-striped progress-bar-animated" now={100}>Loading...</ProgressBar>
@@ -47,7 +45,11 @@ class SearchBar extends Component {
                                 <Form.Control placeholder="Enter Repository Name" type="text" value={this.state.gitRepository} onChange={this.gitRepositoryHandler} className="form-control col-12" id="repository" />
                             </Form.Group>
                             <div className="col-2 submit">
-                                <Button variant="primary" type="button" className="col-12" onClick={this.checkCommitsHandler} disabled={this.state.gitUsername.trim() === '' || this.state.gitRepository.trim() === ''}>Check</Button>
+                                <Button variant="primary" type="button" className="col-12" 
+                                onClick={() => this.props.onCheckCommits(this.state.gitUsername, this.state.gitRepository)} 
+                                disabled={this.state.gitUsername.trim() === '' || this.state.gitRepository.trim() === ''}>
+                                    Check
+                                </Button>
                             </div>
                         </Form>
                     </div>
@@ -58,4 +60,16 @@ class SearchBar extends Component {
     }
 }
 
-export default SearchBar;
+const mapStateToProps = state => {
+    return {
+        showProgress: state.flags.showSearchBarProgress
+    }
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onCheckCommits: (gitUsername, gitRepository) => dispatch(actionCreators.setEntitiesAsync(gitUsername, gitRepository))
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);

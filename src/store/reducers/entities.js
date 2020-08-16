@@ -1,3 +1,5 @@
+import * as actionTypes from '../actions/actionTypes';
+import { updateObject } from '../utility.js';
 
 const initialState = {
     entities: {
@@ -8,10 +10,10 @@ const initialState = {
 }
 
 const reducer = ( state = initialState, action) => {
-    switch ( action.type) {
-
+    switch ( action.type ) {
+        case actionTypes.SET_ENTITIES: return updateObject(state, { entities: action.payload.entities, result: action.payload.result });
+        default: return state;
     }
-    return state;
 }
 
 export default reducer;
