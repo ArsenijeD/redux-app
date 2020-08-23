@@ -22,9 +22,16 @@ export const setEntitiesAsync = (gitUsername, gitRepository) => {
     };
 };
 
-export const setEntities = (data) => {
+export const setEntities = (entities) => {
     return {
         type: actionTypes.SET_ENTITIES,
-        payload: normalize(data, commitCollectionSchema)
+        payload: normalize(entities, commitCollectionSchema)
     };
+};
+
+export const changeDevelopersStatus = (developersName) => {
+    return {
+        type: actionTypes.CHANGE_DEVELOPERS_STATUS,
+        payload: developersName
+    }
 };

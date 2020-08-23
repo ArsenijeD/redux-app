@@ -9,9 +9,22 @@ const initialState = {
     result: []
 }
 
+
 const reducer = ( state = initialState, action) => {
     switch ( action.type ) {
+        //TODO: Consider using third-party library for managing immutability of the statte (currently is manually)
         case actionTypes.SET_ENTITIES: return updateObject(state, { entities: action.payload.entities, result: action.payload.result });
+        case actionTypes.CHANGE_DEVELOPERS_STATUS: 
+            return updateObject(...state, {entities: {
+                ...state.entities,
+                developers: {
+                    ...state.entities.developers,
+                    [action.payload]: {
+                        ...state.entities.developers[action.payload],
+                        removed: !state.entities.developers[action.payload].removed
+                    }
+                }
+            }});
         default: return state;
     }
 }
