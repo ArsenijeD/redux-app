@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import axios from 'axios';
 
+
 import entitiesReducer from './store/reducers/entities';
 import flagsReducer from './store/reducers/flags';
 import './index.css';

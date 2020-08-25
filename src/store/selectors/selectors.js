@@ -7,6 +7,14 @@ const getDevelopers = state => {
     return state.normalizedSlice.entities.developers;
 }
 
+const getCommits = state => {
+    return state.normalizedSlice.entities.commits;
+}
+
+const getResult = state => {
+    return state.normalizedSlice.result;
+}
+
 export const getActiveDevelopersNames = createSelector(
     getDevelopers,
     (developers) => {
@@ -28,5 +36,23 @@ export const getRemovedDevelopersNames = createSelector(
             else 
                 return undefined;
         });
+    }
+);
+
+export const getCommitsPerActiveDevelopers = createSelector(
+    getActiveDevelopersNames,
+    getCommits,
+    getResult,
+    (activeDevelopersNames, commits, result) => {
+        // eslint-disable-next-line
+        let commitsPerActiveDevelopers = activeDevelopersNames.reduce((a, b)=> (a[b] = 0, a), {});
+        activeDevelopersNames.forEach(activeDevelopersName => {
+            result.forEach(sha => {
+                if (commits[sha].developer === activeDevelopersName) {
+                    commitsPerActiveDevelopers[activeDevelopersName]+= 1;
+                }
+            })
+        });
+        return commitsPerActiveDevelopers;
     }
 );
