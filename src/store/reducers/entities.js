@@ -28,6 +28,20 @@ const reducer = ( state = initialState, action) => {
                 }, 
                 result: state.result
             });
+        case actionTypes.CHANGE_COMMIT_SELECTED_STATUS:
+            return updateObject(...state, {
+                entities: {
+                    ...state.entities,
+                    commits: {
+                        ...state.entities.commits,
+                        [action.payload]: {
+                            ...state.entities.commits[action.payload],
+                            selected: !state.entities.commits[action.payload].selected
+                        }
+                    }
+                }, 
+                result: state.result
+            });
         default: return state;
     }
 }

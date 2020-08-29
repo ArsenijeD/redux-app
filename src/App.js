@@ -7,6 +7,7 @@ import PanelPlaceholder from './components/PanelPlaceholder/PanelPlaceholder';
 import SearchBar from './containers/SearchBar/SearchBar';
 import DevelopersList from './containers/DevelopersList/DevelopersList';
 import PieChart from './containers/PieChart/PieChart';
+import CommitsGraph from './containers/CommitsGraph/CommitsGraph';
 
 class App extends Component {
   render() {
@@ -29,7 +30,9 @@ class App extends Component {
             <PanelPlaceholder title="Selected Commit"></PanelPlaceholder>
           </div>
           <div className="col-3 panels-col" >
-            <PanelPlaceholder title="Commits Graph"></PanelPlaceholder>
+            <PanelPlaceholder title="Commits Graph">
+              <CommitsGraph></CommitsGraph>
+            </PanelPlaceholder>
           </div>
         </div>
       );

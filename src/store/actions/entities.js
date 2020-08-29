@@ -35,3 +35,10 @@ export const changeDevelopersStatus = (developersName) => {
         payload: developersName
     }
 };
+
+export const changeCommitSelectedSatus = (sha) => {
+    return {
+        type: actionTypes.CHANGE_COMMIT_SELECTED_STATUS,
+        payload: sha
+    }
+}
