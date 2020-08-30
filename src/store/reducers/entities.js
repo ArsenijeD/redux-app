@@ -42,6 +42,20 @@ const reducer = ( state = initialState, action) => {
                 }, 
                 result: state.result
             });
+        case actionTypes.CHANGE_COMMITS_DEVELOPER:
+            return updateObject(...state, {
+                entities: {
+                    ...state.entities,
+                    commits: {
+                        ...state.entities.commits,
+                        [action.payload.sha]: {
+                            ...state.entities.commits[action.payload.sha],
+                            developer: action.payload.newDeveloper
+                        }
+                    }
+                }, 
+                result: state.result
+            });
         default: return state;
     }
 }

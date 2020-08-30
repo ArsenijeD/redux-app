@@ -69,7 +69,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         setCommitAsSelected: (sha, selectedCommit) => {
-            if(selectedCommit) {
+            if(selectedCommit.sha) {
                 dispatch(actionCreators.changeCommitSelectedSatus(selectedCommit.sha));
             }
             dispatch(actionCreators.changeCommitSelectedSatus(sha));

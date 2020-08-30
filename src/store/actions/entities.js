@@ -41,4 +41,11 @@ export const changeCommitSelectedSatus = (sha) => {
         type: actionTypes.CHANGE_COMMIT_SELECTED_STATUS,
         payload: sha
     }
-}
+};
+
+export const changeCommitsDeveloper = (newDeveloper, sha) => {
+    return {
+        type: actionTypes.CHANGE_COMMITS_DEVELOPER,
+        payload: {newDeveloper, sha}
+    }
+};

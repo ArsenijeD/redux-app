@@ -16,7 +16,6 @@
     overflow-y: auto;
     padding-right: 0 !important;
     margin-left: 2%;
-
 }
 .parents-group {
     height: 25%;
@@ -28,6 +27,7 @@
 }
 .progress-bar {
     width: 100%;
+    margin-top: 0 !important;
     margin-left: 14%;
 }
 .list-group-item {

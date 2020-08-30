@@ -2,7 +2,8 @@
 export {
     setEntitiesAsync,
     changeDevelopersStatus,
-    changeCommitSelectedSatus
+    changeCommitSelectedSatus,
+    changeCommitsDeveloper
 } from './entities';
 export {
     

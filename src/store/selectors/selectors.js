@@ -77,6 +77,20 @@ export const getActiveCommits = createSelector(
 export const getSelectedCommit = createSelector(
     getCommits,
     commits => {
-        return Object.values(commits).find(commit => { return commit.selected });
+        const selectedCommit = Object.values(commits).find(commit => { return commit.selected });
+        return selectedCommit ? selectedCommit : {};
     }
-)
+);
+
+export const getNonParentsForSelectedCommit = createSelector(
+    getSelectedCommit,
+    getResult,
+    (selectedCommit, result) => {
+        // eslint-disable-next-line
+        return result.filter(commitSha => {
+            if (selectedCommit.sha && !selectedCommit.parents.includes(commitSha) && selectedCommit.sha !== commitSha) {
+                return commitSha;
+            }
+        })
+    }
+);
