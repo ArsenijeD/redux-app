@@ -56,6 +56,50 @@ const reducer = ( state = initialState, action) => {
                 }, 
                 result: state.result
             });
+        case actionTypes.ADD_PARENT:
+            return updateObject(...state, {
+                entities: {
+                    ...state.entities,
+                    commits: {
+                        ...state.entities.commits,
+                        [action.payload.commitSha]: {
+                            ...state.entities.commits[action.payload.commitSha],
+                            parents: [...state.entities.commits[action.payload.commitSha].parents, action.payload.newParentSha]
+                        }
+                    }
+                }, 
+                result: state.result
+            });
+        case actionTypes.REMOVE_PARENT:
+            const index = state.entities.commits[action.payload.commitSha].parents.indexOf(action.payload.oldParentSha);
+            return updateObject(...state, {
+                entities: {
+                    ...state.entities,
+                    commits: {
+                        ...state.entities.commits,
+                        [action.payload.commitSha]: {
+                            ...state.entities.commits[action.payload.commitSha],
+                            parents: [...state.entities.commits[action.payload.commitSha].parents.slice(0, index), 
+                                      ...state.entities.commits[action.payload.commitSha].parents.slice(index + 1)]
+                        }
+                    }
+                }, 
+                result: state.result
+            });
+        case actionTypes.SET_COMMIT_AS_REMOVED:
+            return updateObject(...state, {
+                entities: {
+                    ...state.entities,
+                    commits: {
+                        ...state.entities.commits,
+                        [action.payload]: {
+                            ...state.entities.commits[action.payload],
+                            removed: true
+                        }
+                    }
+                }, 
+                result: state.result
+            });
         default: return state;
     }
 }

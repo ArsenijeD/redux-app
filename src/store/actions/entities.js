@@ -49,3 +49,24 @@ export const changeCommitsDeveloper = (newDeveloper, sha) => {
         payload: {newDeveloper, sha}
     }
 };
+
+export const addParent = (commitSha, newParentSha) => {
+    return {
+        type: actionTypes.ADD_PARENT,
+        payload: {commitSha, newParentSha}
+    }
+};
+
+export const removeParent = (commitSha, oldParentSha) => {
+    return {
+        type: actionTypes.REMOVE_PARENT,
+        payload: {commitSha, oldParentSha}
+    }
+};
+
+export const setCommitAsRemoved = (sha) => {
+    return {
+        type: actionTypes.SET_COMMIT_AS_REMOVED,
+        payload: sha
+    }
+}

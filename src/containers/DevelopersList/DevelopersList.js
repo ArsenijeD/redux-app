@@ -4,7 +4,7 @@ import Badge from 'react-bootstrap/Badge';
 import { connect } from 'react-redux';
 
 import './DevelopersList.css';
-import { getActiveDevelopersNames, getRemovedDevelopersNames} from './../../store/selectors/selectors';
+import { getActiveDevelopersNames, getRemovedDevelopersNames, getSelectedCommit} from './../../store/selectors/selectors';
 import * as actionCreators from './../../store/actions/index';
 
 class DevelopersList extends Component {
@@ -44,7 +44,7 @@ class DevelopersList extends Component {
                         {
                             this.props.removedDevelopersNames.map(developersName => {
                                 return (
-                                    <a href="#/" key={developersName} onClick={() => this.props.onRemovedDeveloperClick(developersName)}> 
+                                    <a href="#/" key={developersName} onClick={() => this.props.onRemovedDeveloperClick(developersName, this.props.selectedCommit)}> 
                                         <Badge variant="secondary">{developersName}</Badge>
                                     </a>
                                 );
@@ -76,15 +76,22 @@ const mapStateToProps = state => {
         activeDevelopersNames: getActiveDevelopersNames(state),
         removedDevelopersNames: getRemovedDevelopersNames(state),
         showActiveDevelopers: getActiveDevelopersNames(state).length !== 0,
-        showRemovedDevelopers: getRemovedDevelopersNames(state).length !== 0
+        showRemovedDevelopers: getRemovedDevelopersNames(state).length !== 0,
+        selectedCommit: getSelectedCommit(state)
     }
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        //TODO: Add code for deselecting commit if user is removing developer whose commit is currently selected
         onActiveDeveloperClick: (developersName) => dispatch(actionCreators.changeDevelopersStatus(developersName)),
-        onRemovedDeveloperClick: (developersName) => dispatch(actionCreators.changeDevelopersStatus(developersName))
+        onRemovedDeveloperClick: (developersName, selectedCommit) => {
+            //TODO Fix bug: Deselect developer, but commit form is not fully cleaned
+            if(developersName === selectedCommit.developer) {
+                dispatch(actionCreators.changeCommitSelectedSatus(selectedCommit.sha));
+            }
+            dispatch(actionCreators.changeDevelopersStatus(developersName));
+
+        }
     }
 }
 

@@ -26,7 +26,7 @@ class CommitForm extends Component {
                         {
                             this.props.selectedCommit.parents.map(parent => {
                                 return (
-                                    <ListGroup.Item key={parent} className="list-group-item" action href="#/">
+                                    <ListGroup.Item key={parent} className="list-group-item" action href="#/" onClick={() => this.props.onParentClick(this.props.selectedCommit.sha, parent)}>
                                         {parent.substring(0, 2)}..
                                     </ListGroup.Item>
                                 );
@@ -37,7 +37,7 @@ class CommitForm extends Component {
                     {
                         this.props.nonParents.map(nonParent => {
                             return (
-                                <ListGroup.Item key={nonParent} className="list-group-item" action href="#/">
+                                <ListGroup.Item key={nonParent} className="list-group-item" action href="#/" onClick={() => this.props.onNonParentClick(this.props.selectedCommit.sha, nonParent)}>
                                     {nonParent.substring(0, 2)}..
                                 </ListGroup.Item>
                             );
@@ -48,7 +48,7 @@ class CommitForm extends Component {
             );
         } else {
             progress = (
-                <div className="row justify-content-center list-groups-row align-items-center">
+                <div className="progress-div row justify-content-center list-groups-row align-items-center">
                     <ProgressBar className="progress-bar progress-bar-striped progress-bar-animated" now={100}>No parents currently...</ProgressBar>
                 </div>
             );
@@ -65,7 +65,7 @@ class CommitForm extends Component {
                 </Form.Group>
                 <Form.Group>
                     <Form.Label>Developer: </Form.Label>
-                    <select id="developerInput" className="form-control" disabled={formDisabled} value ={this.props.selectedCommit.developer} onChange={(event) => this.props.onDeveloperChange(event.target.value, this.props.selectedCommit.sha)}>
+                    <select id="developerInput" className="form-control" disabled={formDisabled} value ={this.props.selectedCommit.sha ? this.props.selectedCommit.developer : ''} onChange={(event) => this.props.onDeveloperChange(event.target.value, this.props.selectedCommit.sha)}>
                         <option hidden></option>
                         {
                             this.props.activeDevelopersNames.map(activeDeveloperName => {
@@ -82,7 +82,7 @@ class CommitForm extends Component {
                     {progress}
                 </Form.Group>
                 <div className="row justify-content-end button-div align-items-end">
-                    <Button variant="secondary" type="button">Remove</Button>
+                    <Button variant="secondary" type="button" disabled={formDisabled} onClick={() => this.props.onRemoveClick(this.props.selectedCommit.sha)}>Remove</Button>
                 </div>
             </Form>
         );
@@ -99,7 +99,13 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onDeveloperChange: (newDeveloper, sha) => dispatch(actionCreators.changeCommitsDeveloper(newDeveloper, sha))
+        onDeveloperChange: (newDeveloper, sha) => dispatch(actionCreators.changeCommitsDeveloper(newDeveloper, sha)),
+        onNonParentClick: (selectedCommitSha, nonParentSha) => dispatch(actionCreators.addParent(selectedCommitSha, nonParentSha)),
+        onParentClick: (selectedCommitSha, parentSha) => dispatch(actionCreators.removeParent(selectedCommitSha, parentSha)),
+        onRemoveClick: (sha) => {
+            dispatch(actionCreators.setCommitAsRemoved(sha));
+            dispatch(actionCreators.changeCommitSelectedSatus(sha));
+        }
     }
 };
 

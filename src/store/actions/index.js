@@ -3,7 +3,10 @@ export {
     setEntitiesAsync,
     changeDevelopersStatus,
     changeCommitSelectedSatus,
-    changeCommitsDeveloper
+    changeCommitsDeveloper,
+    addParent,
+    removeParent,
+    setCommitAsRemoved
 } from './entities';
 export {
     

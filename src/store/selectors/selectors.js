@@ -15,10 +15,6 @@ const getResult = state => {
     return state.normalizedSlice.result;
 }
 
-const isCommitActive = state => (sha) => {
-    return !state.normalizedSlice.commits[sha].removed;
-}
-
 export const getActiveDevelopersNames = createSelector(
     getDevelopers,
     (developers) => {
@@ -67,7 +63,7 @@ export const getActiveCommits = createSelector(
     (commits, activeDevelopersNames) => {
         // eslint-disable-next-line
         return Object.values(commits).filter(commit => {
-            if (isCommitActive(commit.sha) && activeDevelopersNames.includes(commit.developer)) {
+            if (!commits[commit.sha].removed && activeDevelopersNames.includes(commit.developer)) {
                 return commit;
             } 
         });
