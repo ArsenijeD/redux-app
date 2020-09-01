@@ -34,6 +34,8 @@
   
   <kbd>![alt text](/public/components.png)
   
+  *note: while changing author, developer is selected from the dropdown, but it is not visible on the gif
+  
   *note: blue-statefull components(smart); red-stateless components(dumb)
   
   
