@@ -32,4 +32,6 @@
   Also, there are two stateless components(dumb components) whose only purpose is to render reusable UI.
   Store is <strong>normalized</strong> and <strong>modularized</strong>. 
   
-  <kbd>![alt text](/src/assets/components.png)
+  <kbd>![alt text](/public/components.png)
+  
+  *note: blue-statefull components(smart); red-stateless components(dumb)
