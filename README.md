@@ -38,8 +38,6 @@
   
   
   ## Demo
-
-  Application is deployed and accessible on the URL: https://vuex-app-914f2.firebaseapp.com/
   
   1. Getting data from GitHub, displaying and filtering by developers
   <kbd>![alt text](/public/redux-app_dev_filter.gif)
