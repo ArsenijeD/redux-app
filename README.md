@@ -35,3 +35,15 @@
   <kbd>![alt text](/public/components.png)
   
   *note: blue-statefull components(smart); red-stateless components(dumb)
+  
+  
+  ## Demo
+
+  Application is deployed and accessible on the URL: https://vuex-app-914f2.firebaseapp.com/
+  
+  1. Getting data from GitHub, displaying and filtering by developers
+  <kbd>![alt text](/public/redux-app_dev_filter.gif)
+  
+  
+  2. Manipulating with commits (selecting, changing author and parent commits, deleting)
+  <kbd>![alt text](/public/redux-app_commits_man.gif)
