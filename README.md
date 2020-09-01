@@ -1,4 +1,4 @@
-# Vuex-app
+# Redux-app
 
   The purpose of this React.js application is to show the use of redux library for better state management. 
   The application retrieves data from a specific GitHub repository and allows their visualization and manipulation.
