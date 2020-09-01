@@ -25,3 +25,11 @@
 
   npm start
   ```
+
+## Structure
+  
+  Application contains five containers(smart components) which are using and communicating across the same store. 
+  Also, there are two stateless components(dumb components) whose only purpose is to render reusable UI.
+  Store is <strong>normalized</strong> and <strong>modularized</strong>. 
+  
+  <kbd>![alt text](/src/assets/components.png)
