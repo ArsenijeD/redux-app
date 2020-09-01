@@ -33,3 +33,5 @@
   Store is <strong>normalized</strong> and <strong>modularized</strong>. 
   
   <kbd>![alt text](/public/components.png)
+  
+  *note: blue-statefull components(smart); red-stateless components(dumb)
