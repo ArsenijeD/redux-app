@@ -36,8 +36,6 @@
   
   *note: while changing author, developer is selected from the dropdown, but it is not visible on the gif
   
-  *note: blue-statefull components(smart); red-stateless components(dumb)
-  
   
   ## Demo
 
@@ -49,3 +47,5 @@
   
   2. Manipulating with commits (selecting, changing author and parent commits, deleting)
   <kbd>![alt text](/public/redux-app_commits_man.gif)
+  
+  *note: while changing author, developer is selected from the dropdown, but it is not visible on the gif
