@@ -32,10 +32,7 @@
   Also, there are two stateless components(dumb components) whose only purpose is to render reusable UI.
   Store is <strong>normalized</strong> and <strong>modularized</strong>. 
   
-  <kbd>![alt text](/public/components.png)
-  
-  *note: while changing author, developer is selected from the dropdown, but it is not visible on the gif
-  
+  <kbd>![alt text](/public/components.png)  
   
   ## Demo
   
